@@ -39,9 +39,10 @@ const demoUsers = [
     name: "Hasan Çoruk",
     field: "Akademisyen",
     email: "beun@ideond.local",
-    password: "demo123"
-
-    {
+    password: "demo123",
+    bio: "Akademisyen"
+  
+    {,
     
     
      
