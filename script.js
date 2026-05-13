@@ -42,7 +42,7 @@ const demoUsers = [
     password: "demo123",
     bio: "Akademisyen"
   
-    {,
+  },
     
     
      
