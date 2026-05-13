@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>İdeOnd | Akademik Bağlantı ve Bilgi Paylaşımı</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar" id="topbar" hidden>
+      <a class="brand" href="#feed" aria-label="İdeOnd ana akış">
+        <span class="brand-mark">İO</span>
+        <span>İdeOnd</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Ana menü">
+        <a href="#feed" data-nav="feed" title="Ana akış">
+          <span aria-hidden="true">⌂</span>
+          <span>Akış</span>
+        </a>
+        <a href="#write" data-nav="write" title="Makale yaz">
+          <span aria-hidden="true">✎</span>
+          <span>Yaz</span>
+        </a>
+        <a href="#search" data-nav="search" title="Ara">
+          <span aria-hidden="true">⌕</span>
+          <span>Ara</span>
+        </a>
+        <a href="#dm" data-nav="dm" title="Mesajlar">
+          <span aria-hidden="true">✉</span>
+          <span>DM</span>
+        </a>
+        <a href="#profile" data-nav="profile" title="Profil">
+          <span aria-hidden="true">◉</span>
+          <span>Profil</span>
+        </a>
+      </nav>
+
+      <button class="icon-button" type="button" id="logoutButton" title="Çıkış yap" aria-label="Çıkış yap">
+        <span aria-hidden="true">↪</span>
+      </button>
+    </header>
+
+    <main>
+      <section class="auth-screen" id="authScreen">
+        <div class="auth-visual" aria-hidden="true">
+          <div class="constellation">
+            <span class="node node-one"></span>
+            <span class="node node-two"></span>
+            <span class="node node-three"></span>
+            <span class="node node-four"></span>
+          </div>
+        </div>
+
+        <div class="auth-panel">
+          <div class="auth-heading">
+            <span class="brand-mark large">İO</span>
+            <p class="eyebrow">Akademik bağlantı ağı</p>
+            <h1>İdeOnd</h1>
+            <p>Çalışmalarını yayınla, fikirlerini paylaş, alanındaki insanlarla bağ kur.</p>
+          </div>
+
+          <div class="tabs" role="tablist" aria-label="Giriş ve kayıt">
+            <button class="tab-button active" type="button" id="loginTab" data-auth-tab="login" role="tab" aria-selected="true">Giriş</button>
+            <button class="tab-button" type="button" id="registerTab" data-auth-tab="register" role="tab" aria-selected="false">Kayıt</button>
+          </div>
+
+          <form class="auth-form active" id="loginForm" data-auth-form="login">
+            <label for="loginEmail">E-posta</label>
+            <input id="loginEmail" name="email" type="email" autocomplete="email" placeholder="demo@ideond.local" required>
+
+            <label for="loginPassword">Şifre</label>
+            <input id="loginPassword" name="password" type="password" autocomplete="current-password" placeholder="demo123" required>
+
+            <button class="primary-button" type="submit">Giriş Yap</button>
+            <p class="form-hint">Demo hesap: demo@ideond.local / demo123</p>
+            <p class="form-message" id="loginMessage" aria-live="polite"></p>
+          </form>
+
+          <form class="auth-form" id="registerForm" data-auth-form="register">
+            <label for="registerName">Ad Soyad</label>
+            <input id="registerName" name="name" type="text" autocomplete="name" placeholder="Adın Soyadın" required>
+
+            <label for="registerField">Alan / Bölüm</label>
+            <input id="registerField" name="field" type="text" placeholder="Örn. Bilgisayar Programcılığı" required>
+
+            <label for="registerEmail">E-posta</label>
+            <input id="registerEmail" name="email" type="email" autocomplete="email" placeholder="ornek@mail.com" required>
+
+            <label for="registerPassword">Şifre</label>
+            <input id="registerPassword" name="password" type="password" autocomplete="new-password" placeholder="En az 4 karakter" required>
+
+            <button class="primary-button" type="submit">Hesap Oluştur</button>
+            <p class="form-message" id="registerMessage" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="page page-feed" id="feedPage" data-page="feed" hidden>
+        <div class="layout-grid">
+          <aside class="profile-summary" id="profileSummary"></aside>
+
+          <section class="feed-column" aria-labelledby="feedTitle">
+            <div class="compose-strip">
+              <button class="avatar-button" type="button" id="miniProfileButton" aria-label="Profiline git"></button>
+              <a class="compose-link" href="#write">Bugün hangi fikrini paylaşmak istersin?</a>
+            </div>
+
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Akademik akış</p>
+                <h2 id="feedTitle">Yeni çalışmalar</h2>
+              </div>
+              <span class="counter-pill" id="postCounter">0 yayın</span>
+            </div>
+
+            <div class="post-list" id="postList"></div>
+          </section>
+
+          <aside class="side-panel">
+            <h3>Öne çıkan alanlar</h3>
+            <div class="topic-list">
+              <span>Yazılım</span>
+              <span>Veri Analizi</span>
+              <span>Toplumsal Araştırma</span>
+              <span>Girişimcilik</span>
+            </div>
+            <h3>Demo hedefleri</h3>
+            <ul class="check-list">
+              <li>Makale paylaşımı</li>
+              <li>Profil üzerinden yayın takibi</li>
+              <li>Offline demo veri saklama</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section class="page page-search" id="searchPage" data-page="search" hidden>
+        <div class="search-layout">
+          <section class="search-panel" aria-labelledby="searchTitle">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Keşfet</p>
+                <h2 id="searchTitle">Ara</h2>
+              </div>
+            </div>
+            <label class="search-box" for="searchInput">
+              <span aria-hidden="true">⌕</span>
+              <input id="searchInput" type="search" autocomplete="off" placeholder="Yayın, yazar veya konu ara">
+            </label>
+            <div class="post-list" id="searchResults"></div>
+          </section>
+
+          <aside class="trends-panel" aria-labelledby="trendsTitle">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow">Gündem</p>
+                <h2 id="trendsTitle">Popüler konular</h2>
+              </div>
+            </div>
+            <div class="trend-list" id="popularTopics"></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="page page-dm" id="dmPage" data-page="dm" hidden>
+        <div class="dm-layout">
+          <aside class="dm-people" aria-labelledby="dmPeopleTitle">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow">Mesajlar</p>
+                <h2 id="dmPeopleTitle">Kişiler</h2>
+              </div>
+            </div>
+            <div class="dm-person-list" id="dmPeople"></div>
+          </aside>
+
+          <section class="dm-panel" aria-labelledby="dmTitle">
+            <div class="dm-header" id="dmHeader"></div>
+            <div class="dm-thread" id="dmThread"></div>
+            <form class="dm-form" id="dmForm">
+              <input id="dmInput" type="text" maxlength="220" placeholder="Mesaj yaz">
+              <button class="primary-button" type="submit">Gönder</button>
+            </form>
+          </section>
+        </div>
+      </section>
+
+      <section class="page page-write" id="writePage" data-page="write" hidden>
+        <div class="narrow-layout">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Yeni yayın</p>
+              <h2>Makale veya çalışma paylaş</h2>
+            </div>
+          </div>
+
+          <form class="write-form" id="postForm">
+            <label for="postTitle">Başlık</label>
+            <input id="postTitle" name="title" type="text" placeholder="Çalışmanın başlığını yaz" required>
+
+            <label for="postCategory">Kategori</label>
+            <select id="postCategory" name="category" required>
+              <option value="">Kategori seç</option>
+              <option>Yazılım</option>
+              <option>Veri Analizi</option>
+              <option>Eğitim</option>
+              <option>Sağlık</option>
+              <option>Sosyal Bilimler</option>
+              <option>Girişimcilik</option>
+            </select>
+
+            <label for="postSummary">Kısa özet</label>
+            <textarea id="postSummary" name="summary" rows="3" placeholder="Okuyucunun ilk bakışta anlayacağı kısa özet" required></textarea>
+
+            <label for="postContent">İçerik</label>
+            <textarea id="postContent" name="content" rows="10" placeholder="Çalışmanın amacı, yöntemleri, sonuçları veya fikirlerini yaz" required></textarea>
+
+            <div class="form-actions">
+              <a class="secondary-button" href="#feed">Vazgeç</a>
+              <button class="primary-button" type="submit">Yayınla</button>
+            </div>
+            <p class="form-message" id="postMessage" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="page page-profile" id="profilePage" data-page="profile" hidden>
+        <div class="profile-layout">
+          <section class="profile-hero" id="profileHero"></section>
+          <section class="profile-posts">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Kişisel arşiv</p>
+                <h2>Yayınların</h2>
+              </div>
+            </div>
+            <div class="post-list" id="profilePosts"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="page page-detail" id="detailPage" data-page="detail" hidden>
+        <article class="detail-article" id="detailArticle"></article>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
