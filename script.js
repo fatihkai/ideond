@@ -34,19 +34,7 @@ const demoUsers = [
     bio: "Veri görselleştirme, okunabilir grafikler ve karar destek panoları üzerine çalışıyor."
   },
   
-  {
-   id:"user-hasan",
-    name: "Hasan Çoruk",
-    field: "Akademisyen",
-    email: "beun@ideond.local",
-    password: "demo123",
-    bio: "Akademisyen"
-  
-  },
     
-    
-     
-      
 ];
 
 const demoPosts = [
